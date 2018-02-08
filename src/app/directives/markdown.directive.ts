@@ -12,8 +12,7 @@ export class Marked {
 export class MarkdownDirective implements OnChanges, OnInit {
   @Input('appMarkdown') text: string;
 
-  constructor(private el: ElementRef, private marked: Marked) {
-  }
+  constructor(private el: ElementRef, private marked: Marked) {}
 
   ngOnInit() {
     this.el.nativeElement.classList.add('markdown-body');

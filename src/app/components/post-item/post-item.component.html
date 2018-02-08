@@ -1,4 +1,28 @@
 <div class="post">
-  <h2>{{ item.title }}</h2>
-  <div class="body" [appMarkdown]="item.body">{{ item.body }}</div>
+  <h2>
+    <a [routerLink]="['/post', item.id]" *ngIf="!standalone">
+      {{ item.title }}
+    </a>
+    <span *ngIf="standalone">
+      {{ item.title }}
+    </span>
+  </h2>
+  <h3>
+    in
+    <span class="category">
+      {{ item.category.name}}
+    </span>
+  </h3>
+  <div
+    class="body"
+    [appMarkdown]="text"
+  ></div>
+  <div *ngIf="truncated">
+    <a [routerLink]="['/post', item.id]">show more</a>
+  </div>
+  <div class="tags">
+    <span *ngFor="let tag of item.tags; let last = last">
+      <a href="#TODO">{{ tag.name }}</a>{{ last ? '' : ','}}
+    </span>
+  </div>
 </div>

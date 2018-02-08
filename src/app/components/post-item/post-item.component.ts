@@ -11,9 +11,18 @@ export class PostItemComponent implements OnInit {
 
   @Input() standalone = false;
 
-  constructor() { }
+  protected text = '';
+  protected truncated = false;
 
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    let text = this.item.body;
+    if (text.includes('[more]')) {
+      this.truncated = true;
+      text = text.split('[more]')[0];
+    }
+    this.text = text;
+  }
 }

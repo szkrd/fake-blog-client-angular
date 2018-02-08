@@ -16,14 +16,18 @@ export class PostsService {
   getPosts(page = 1): Observable<Posts> {
     const url = `${environment.apiUrl}/posts`;
 
+    let params = new HttpParams()
+      .set('_limit', '10')
+      .set('_page', String(page))
+      .set('_include', 'tags');
+
+    // this would not work in the set chain above!
+    params = params.append('_expand', 'category');
+    params = params.append('_expand', 'user');
+
     return this.httpClient
       .get<any>(url, {
-        params: new HttpParams()
-          .set('_limit', '10')
-          .set('_page', String(page))
-          .set('_expand', 'category')
-          .set('_expand', 'user')
-          .set('_include', 'tags'),
+        params, //  listing here with inline set will choke on same named items, like _expand
         observe: 'response'
       }).map(response => {
         const header = new ResponseHeader(response.headers);
