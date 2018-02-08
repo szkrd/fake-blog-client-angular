@@ -13,6 +13,7 @@ import {routing} from './app.routes';
 import {MarkdownDirective} from './directives/markdown.directive';
 import {HttpClientModule} from '@angular/common/http';
 import {PostsService} from './services/posts.service';
+import {PaginationComponent} from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {PostsService} from './services/posts.service';
     SearchComponent,
     HeaderComponent,
     UserMenuComponent,
+    PaginationComponent,
     MarkdownDirective
   ],
   imports: [

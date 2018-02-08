@@ -1,3 +1,4 @@
-<p>
-  post-item works!
-</p>
+<div class="post">
+  <h2>{{ item.title }}</h2>
+  <div class="body" [appMarkdown]="item.body">{{ item.body }}</div>
+</div>

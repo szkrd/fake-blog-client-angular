@@ -1,0 +1,29 @@
+<nav>
+  <ul class="pagination justify-content-center">
+    <li class="page-item" *ngIf="headerLink.first">
+      <a class="page-link page-first" [href]="headerLink.first.url" (click)="onClick($event, headerLink.first)">
+        First
+      </a>
+    </li>
+    <li class="page-item" *ngIf="headerLink.prev">
+      <a class="page-link page-prev" [href]="headerLink.prev.url" (click)="onClick($event, headerLink.prev)">
+        {{headerLink.prev.page}}
+      </a>
+    </li>
+    <li class="page-item active" *ngIf="currentPageNumber > 0">
+      <a class="page-link page-current">
+        {{currentPageNumber}}
+      </a>
+    </li>
+    <li class="page-item" *ngIf="headerLink.next">
+      <a class="page-link page-next" [href]="headerLink.next.url" (click)="onClick($event, headerLink.next)">
+        {{headerLink.next.page}}
+      </a>
+    </li>
+    <li class="page-item" *ngIf="headerLink.last">
+      <a class="page-link page-last" [href]="headerLink.last.url" (click)="onClick($event, headerLink.last)">
+        Last
+      </a>
+    </li>
+  </ul>
+</nav>

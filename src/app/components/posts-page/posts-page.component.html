@@ -1,4 +1,6 @@
-<app-header></app-header>
 <p>
-  posts-page works!
+  posts-page
 </p>
+<div>
+  <app-post-item [item]="item" *ngFor="let item of items"></app-post-item>
+</div>
