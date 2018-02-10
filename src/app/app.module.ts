@@ -14,6 +14,7 @@ import {MarkdownDirective} from './directives/markdown.directive';
 import {HttpClientModule} from '@angular/common/http';
 import {PostsService} from './services/posts.service';
 import {PaginationComponent} from './components/pagination/pagination.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {PaginationComponent} from './components/pagination/pagination.component'
     HeaderComponent,
     UserMenuComponent,
     PaginationComponent,
-    MarkdownDirective
+    MarkdownDirective,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

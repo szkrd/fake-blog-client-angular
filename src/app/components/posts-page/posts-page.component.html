@@ -1,6 +1,9 @@
 <p>
   posts-page
 </p>
-<div>
-  <app-post-item [item]="item" *ngFor="let item of items"></app-post-item>
+<div class="main-layout">
+  <div class="main-layout__content">
+    <app-post-item [item]="item" *ngFor="let item of items"></app-post-item>
+  </div>
+  <app-sidebar></app-sidebar>
 </div>

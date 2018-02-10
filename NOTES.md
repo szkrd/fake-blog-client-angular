@@ -23,3 +23,10 @@ import { RouterModule, Routes } from '@angular/router';
 ## using require
 
 npm install --save @types/node
+
+## migrating an existing project to scss
+
+.angular-cli.json
+
+apps styles -> "styles.scss"
+defaults styleExt -> "scss"

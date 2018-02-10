@@ -7,7 +7,7 @@ import {Post} from '../../interfaces/post';
 @Component({
   selector: 'app-posts-page',
   templateUrl: './posts-page.component.html',
-  styleUrls: ['./posts-page.component.css']
+  styleUrls: ['./posts-page.component.scss']
 })
 export class PostsPageComponent implements OnInit {
   private pagination: HeaderLink;
