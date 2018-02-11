@@ -6,7 +6,7 @@ import {PostPageComponent} from './components/post-page/post-page.component';
 import {ProfilePageComponent} from './components/profile-page/profile-page.component';
 import {PostItemComponent} from './components/post-item/post-item.component';
 import {TagsWidgetComponent} from './components/tags-widget/tags-widget.component';
-import {SearchComponent} from './components/search/search.component';
+import {SearchPostsComponent} from './components/search-posts/search-posts.component';
 import {HeaderComponent} from './components/header/header.component';
 import {UserMenuComponent} from './components/user-menu/user-menu.component';
 import {routing} from './app.routes';
@@ -14,7 +14,10 @@ import {MarkdownDirective} from './directives/markdown.directive';
 import {HttpClientModule} from '@angular/common/http';
 import {PostsService} from './services/posts.service';
 import {PaginationComponent} from './components/pagination/pagination.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import {SidebarComponent} from './components/sidebar/sidebar.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ArchiveWidgetComponent } from './components/archive-widget/archive-widget.component';
+import { MonthNamePipe } from './pipes/month-name.pipe';
 
 
 @NgModule({
@@ -25,16 +28,20 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ProfilePageComponent,
     PostItemComponent,
     TagsWidgetComponent,
-    SearchComponent,
+    SearchPostsComponent,
     HeaderComponent,
     UserMenuComponent,
     PaginationComponent,
     MarkdownDirective,
     SidebarComponent,
+    ArchiveWidgetComponent,
+    MonthNamePipe,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     routing
   ],
   providers: [

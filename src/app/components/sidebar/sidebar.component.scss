@@ -1,4 +1,7 @@
+@import "../../../variables";
+
 :host {
   display: block;
   flex: 0 0 200px;
+  background-color: rgba($color4, .2);
 }

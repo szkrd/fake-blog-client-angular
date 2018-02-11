@@ -1,5 +1,9 @@
 # LittleAngularBookExamples
 
+Backend: [fake blog api](https://github.com/szkrd/fake-blog-api) (apiUrl is 'http://localhost:4040', use a .env file to override the default port).
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
 ## Development server

@@ -1,0 +1,17 @@
+<h2>
+  posts archive
+</h2>
+<form>
+<ul>
+  <li *ngFor="let archiveYear of items">
+    <a href="#" (click)="onYearToggleClick(archiveYear.year); false">
+      {{ archiveYear.year }} ({{ archiveYear.count }})
+    </a>
+    <ul *ngIf="openedYears.includes(archiveYear.year)">
+      <li *ngFor="let archiveMonth of archiveYear.months">
+        {{ archiveMonth.month | monthName}} ({{ archiveMonth.count }})
+      </li>
+    </ul>
+  </li>
+</ul>
+</form>

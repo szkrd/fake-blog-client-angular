@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <input
+    type="search"
+    name="query"
+    id="query"
+    minlength="2"
+    maxlength="64"
+    required
+    placeholder="search posts"
+    [formControl]="query"
+  >
+  <button
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    Search
+  </button>
+</form>
