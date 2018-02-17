@@ -16,9 +16,9 @@ import {PostsService} from './services/posts.service';
 import {PaginationComponent} from './components/pagination/pagination.component';
 import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ArchiveWidgetComponent } from './components/archive-widget/archive-widget.component';
-import { MonthNamePipe } from './pipes/month-name.pipe';
-
+import {ArchiveWidgetComponent} from './components/archive-widget/archive-widget.component';
+import {MonthNamePipe} from './pipes/month-name.pipe';
+import {Marked} from './interfaces/marked';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { MonthNamePipe } from './pipes/month-name.pipe';
     routing
   ],
   providers: [
-    PostsService
+    PostsService,
+    Marked
   ],
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,8 @@
 import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
-import {MarkedOptions, parse} from 'marked';
-
-export class Marked {
-  parse: (src: string, options?: MarkedOptions) => string = parse;
-}
+import {Marked} from '../interfaces/marked';
 
 @Directive({
   selector: '[appMarkdown]',
-  providers: [Marked]
 })
 export class MarkdownDirective implements OnChanges, OnInit {
   @Input('appMarkdown') text: string;
