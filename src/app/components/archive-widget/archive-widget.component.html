@@ -2,16 +2,30 @@
   posts archive
 </h2>
 <form>
-<ul>
-  <li *ngFor="let archiveYear of items">
-    <a href="#" (click)="onYearToggleClick(archiveYear.year); false">
-      {{ archiveYear.year }} ({{ archiveYear.count }})
-    </a>
-    <ul *ngIf="openedYears.includes(archiveYear.year)">
-      <li *ngFor="let archiveMonth of archiveYear.months">
-        {{ archiveMonth.month | monthName}} ({{ archiveMonth.count }})
-      </li>
-    </ul>
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let archiveYear of items">
+      <a href="#" (click)="onYearToggleClick(archiveYear.year); false">
+        {{ archiveYear.year }} ({{ archiveYear.count }})
+      </a>
+      <!--region months-->
+      <ul *ngIf="openedYears.includes(archiveYear.year)">
+        <li *ngFor="let archiveMonth of archiveYear.months">
+          <a href="#" (click)="onMonthToggleClick(archiveMonth); false">
+            {{ archiveMonth.month | monthName}} ({{ archiveMonth.count }})
+          </a>
+
+          <!--region post titles -->
+          <ul *ngIf="currentArchiveTitles.length && openedMonth === archiveMonth.id">
+            <li *ngFor="let archiveTitle of currentArchiveTitles">
+              <a [routerLink]="['/post', archiveTitle.id]">
+                {{ archiveTitle.title }}
+              </a>
+            </li>
+          </ul>
+          <!--endregion post titles-->
+        </li>
+      </ul>
+      <!--endregion months-->
+    </li>
+  </ul>
 </form>

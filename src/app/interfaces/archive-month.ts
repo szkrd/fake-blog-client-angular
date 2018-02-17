@@ -1,5 +1,5 @@
 export interface ArchiveMonth {
-  extended: boolean;
+  id: number;
   month: number;
   dates: number[];
   count: number;

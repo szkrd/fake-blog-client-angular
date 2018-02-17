@@ -43,7 +43,7 @@ export class ArchiveYears extends Array<ArchiveYear> {
       Object.keys(monthMap).forEach(month => {
         const current = monthMap[month].slice().sort((a, b) => a - b);
         months.push({
-          extended: false,
+          id: +`${year}${month}`,
           month: +month,
           dates: current,
           count: current.length,
@@ -53,7 +53,6 @@ export class ArchiveYears extends Array<ArchiveYear> {
       });
 
       this.unshift({
-        extended: false,
         year: +year,
         count: yearMap[year].length,
         months

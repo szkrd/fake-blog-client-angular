@@ -8,6 +8,8 @@ import {Posts} from '../interfaces/posts';
 import {ResponseHeader} from '../models/response-header';
 import {Post} from '../interfaces/post';
 import {ArchiveYears} from '../models/archive-years';
+import {ArchiveMonth} from '../interfaces/archive-month';
+import {ArchiveTitle} from '../interfaces/archive-title';
 
 @Injectable()
 export class PostsService {
@@ -51,5 +53,15 @@ export class PostsService {
       .map(response => {
         return new ArchiveYears(response);
       });
+  }
+
+  getTitlesInMonth(minDate: number, maxDate: number): Observable<ArchiveTitle[]> {
+    const params = new HttpParams()
+      .set('_only', 'title,id')
+      .set('createdAt_gte', String(minDate))
+      .set('createdAt_lte', String(maxDate));
+
+    return this.httpClient
+      .get<any>(this.url, {params});
   }
 }
