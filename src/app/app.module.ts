@@ -19,6 +19,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ArchiveWidgetComponent} from './components/archive-widget/archive-widget.component';
 import {MonthNamePipe} from './pipes/month-name.pipe';
 import {Marked} from './interfaces/marked';
+import {TagCloudWidgetComponent} from './components/tag-cloud-widget/tag-cloud-widget.component';
+import {TagsService} from './services/tags.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import {Marked} from './interfaces/marked';
     SidebarComponent,
     ArchiveWidgetComponent,
     MonthNamePipe,
+    TagCloudWidgetComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import {Marked} from './interfaces/marked';
   ],
   providers: [
     PostsService,
+    TagsService,
     Marked
   ],
   bootstrap: [AppComponent]

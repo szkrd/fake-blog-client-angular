@@ -1,0 +1,16 @@
+a {
+  color: var(--kimberly);
+  text-decoration: underline;
+
+  &:visited {
+    filter: grayscale(100%);
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.hidden {
+  display: none;
+}

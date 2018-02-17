@@ -11,8 +11,8 @@ export class PostItemComponent implements OnInit {
 
   @Input() standalone = false;
 
-  protected text = '';
-  protected truncated = false;
+  text = '';
+  truncated = false;
 
   constructor() {
   }

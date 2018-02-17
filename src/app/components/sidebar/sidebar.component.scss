@@ -1,7 +1,9 @@
-@import "../../../variables";
+@import "../../../styles/variables";
 
 :host {
   display: block;
-  flex: 0 0 200px;
+  flex: 0 0 250px;
+  width: 250px;
+  padding: 10px;
   background-color: rgba($color4, .2);
 }

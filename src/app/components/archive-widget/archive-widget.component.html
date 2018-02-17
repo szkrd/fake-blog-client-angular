@@ -1,23 +1,32 @@
 <h2>
-  posts archive
+  blog archive
 </h2>
 <form>
   <ul>
-    <li *ngFor="let archiveYear of items">
-      <a href="#" (click)="onYearToggleClick(archiveYear.year); false">
-        {{ archiveYear.year }} ({{ archiveYear.count }})
+    <li *ngFor="let archiveYear of items" [class.opened]="openedYears.includes(archiveYear.year)">
+      <i class="arrow"></i>
+      <a href="#" (click)="onYearToggleClick(archiveYear.year); false" class="year-link">
+        {{ archiveYear.year }}
       </a>
+      <span class="count">
+        ({{ archiveYear.count }})
+      </span>
+
       <!--region months-->
       <ul *ngIf="openedYears.includes(archiveYear.year)">
-        <li *ngFor="let archiveMonth of archiveYear.months">
-          <a href="#" (click)="onMonthToggleClick(archiveMonth); false">
-            {{ archiveMonth.month | monthName}} ({{ archiveMonth.count }})
+        <li *ngFor="let archiveMonth of archiveYear.months" [class.opened]="currentArchiveTitles.length && openedMonth === archiveMonth.id">
+          <i class="arrow"></i>
+          <a href="#" (click)="onMonthToggleClick(archiveMonth); false" class="month-link">
+            {{ archiveMonth.month | monthName}}
           </a>
+          <span class="count">
+            ({{ archiveMonth.count }})
+          </span>
 
           <!--region post titles -->
           <ul *ngIf="currentArchiveTitles.length && openedMonth === archiveMonth.id">
-            <li *ngFor="let archiveTitle of currentArchiveTitles">
-              <a [routerLink]="['/post', archiveTitle.id]">
+            <li *ngFor="let archiveTitle of currentArchiveTitles" class="post-title">
+              <a [routerLink]="['/post', archiveTitle.id]" [title]="archiveTitle.title">
                 {{ archiveTitle.title }}
               </a>
             </li>

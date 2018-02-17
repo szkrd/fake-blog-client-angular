@@ -19,7 +19,6 @@ export class PostsService {
   }
 
   getPosts(page = 1): Observable<Posts> {
-
     let params = new HttpParams()
       .set('_limit', '10')
       .set('_page', String(page))

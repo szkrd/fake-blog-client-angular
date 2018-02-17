@@ -42,6 +42,7 @@ export class ArchiveWidgetComponent implements OnInit {
       });
   }
 
+  // multiple year items may be opened, we store the opened ones' ids in storage
   onYearToggleClick(year: number) {
     const idx = this.openedYears.indexOf(year);
     if (idx === -1) {
@@ -53,6 +54,7 @@ export class ArchiveWidgetComponent implements OnInit {
     this.sessionStorageService.setItem('openedYears', this.openedYears);
   }
 
+  // find a month by id (201512) and then force toggle it on the ui
   openMonthById(id: number) {
     // we have to fool ts a bit, for this reduce to work. why?
     const archiveMonth: ArchiveMonth = [...this.items].reduce((acc: any, yearItem: ArchiveYear) => {
@@ -65,11 +67,13 @@ export class ArchiveWidgetComponent implements OnInit {
     }
   }
 
+  // open or close a month and show its posts, only one month may be open at a time
   onMonthToggleClick(archiveMonth: ArchiveMonth, forceOpen?: boolean) {
-    const currentId = archiveMonth.id;
-    if (forceOpen || this.openedMonth !== currentId) {
+    const { minDate, maxDate, id } = archiveMonth;
+    const open = forceOpen || this.openedMonth !== id;
+
+    if (open) {
       this.openedMonth = archiveMonth.id;
-      const { minDate, maxDate } = archiveMonth;
       this.postsService
         .getTitlesInMonth(minDate, maxDate)
         .subscribe(response => this.currentArchiveTitles = response);

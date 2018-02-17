@@ -1,0 +1,14 @@
+@import "common";
+@import "widgets";
+
+li, .tag-link, .posts-count {
+  display: inline-block;
+}
+
+li {
+  padding: 0 3px 0 0;
+}
+
+.posts-count {
+  font-size: .8em;
+}

@@ -2,7 +2,7 @@ import {Directive, ElementRef, Input, OnChanges, OnInit} from '@angular/core';
 import {Marked} from '../interfaces/marked';
 
 @Directive({
-  selector: '[appMarkdown]',
+  selector: '[appMarkdown]'
 })
 export class MarkdownDirective implements OnChanges, OnInit {
   @Input('appMarkdown') text: string;

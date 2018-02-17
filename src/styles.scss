@@ -1,5 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-@import "variables";
+@import "styles/variables";
+@import "styles/common";
+
+// do NOT move this to scss variables, those are includable
+:root {
+  --color-0: $color0;
+  --dark-gray: $color0;
+
+  --color-1: $color1;
+  --au-chico: $color1;
+
+  --color-2: $color2;
+  --persimmon: $color2;
+
+  --color-3: $color3;
+  --kimberly: $color3;
+
+  --color-4: $color4;
+  --shadow-green: $color4;
+
+  --color-5: $color5;
+  --tea-green: $color5;
+}
+
 
 html {
   font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
@@ -9,23 +31,21 @@ body {
   background-color: #444;
 }
 
-a {
-  color: var(--kimberly);
-  text-decoration: underline;
-
-  &:visited {
-    filter: grayscale(100%);
-  }
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .main-layout {
   display: flex;
 
   &__content {
     flex: 1 0;
+    padding: 20px 10px 10px;
+  }
+}
+
+li {
+  border: 1px solid red;
+}
+
+.markdown-body {
+  p {
+    margin: 0 0 15px 0;
   }
 }

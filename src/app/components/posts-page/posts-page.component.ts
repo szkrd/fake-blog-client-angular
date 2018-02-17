@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PostsService} from '../../services/posts.service';
-import {autobind} from 'core-decorators';
 import {HeaderLink} from '../../interfaces/header-link';
 import {Post} from '../../interfaces/post';
+import bind from '../../utils/bind.decorator';
 
 @Component({
   selector: 'app-posts-page',
@@ -10,8 +10,8 @@ import {Post} from '../../interfaces/post';
   styleUrls: ['./posts-page.component.scss']
 })
 export class PostsPageComponent implements OnInit {
-  private pagination: HeaderLink;
-  private items: Post[];
+  pagination: HeaderLink;
+  items: Post[];
 
   constructor(private postsService: PostsService) {
   }
@@ -20,7 +20,7 @@ export class PostsPageComponent implements OnInit {
     this.postsService.getPosts().subscribe(this.onPostsSuccess);
   }
 
-  @autobind
+  @bind
   onPostsSuccess(results) {
     this.items = results.items;
     this.pagination = results.pagination;

@@ -8,16 +8,20 @@
     </span>
   </h2>
   <h3>
-    in
-    <span class="category">
-      {{ item.category.name}}
+    by
+    <span class="username">
+      {{ item.user.name }}
     </span>
+    in category
+    <a [routerLink]="['/category', item.category.slug]" class="category">
+      {{ item.category.name}}
+    </a>
   </h3>
   <div
     class="body"
     [appMarkdown]="text"
   ></div>
-  <div *ngIf="truncated">
+  <div *ngIf="truncated" class="show-more">
     <a [routerLink]="['/post', item.id]">show more</a>
   </div>
   <div class="tags">

@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SessionStorageService {
-  private name = '';
-
   static getItem (id: string): string {
     return window.sessionStorage.getItem(id);
   }
@@ -12,9 +10,7 @@ export class SessionStorageService {
     window.sessionStorage.setItem(id, s);
   }
 
-  constructor(name = 'store') {
-    this.name = name;
-  }
+  constructor(private name = 'store') {}
 
   getItem (id: string, fallback?: any): any {
     let result;
@@ -34,3 +30,5 @@ export class SessionStorageService {
     }
   }
 }
+
+export default SessionStorageService;
