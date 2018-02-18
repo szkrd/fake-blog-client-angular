@@ -25,6 +25,7 @@ import {CategoriesService} from './services/categories.service';
 import {HttpUtilsService} from './services/http-utils.service';
 import {EventBusService} from './services/event-bus.service';
 import {LoaderComponent} from './components/loader/loader.component';
+import {DomUtilsService} from './services/dom-utils.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {LoaderComponent} from './components/loader/loader.component';
   ],
   providers: [
     EventBusService,
+    DomUtilsService,
     HttpUtilsService,
     PostsService,
     TagsService,

@@ -1,3 +1,13 @@
-<p>
-  post-page works!
-</p>
+<div class="main-layout">
+  <div class="main-layout__content">
+    <app-loader *ngIf="isLoading" class="pull-right"></app-loader>
+    <div [class.translucent]="isLoading">
+      <app-post-item
+        *ngIf="item"
+        [standalone]="true"
+        [item]="item"
+      ></app-post-item>
+    </div>
+  </div>
+  <app-sidebar></app-sidebar>
+</div>

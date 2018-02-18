@@ -14,6 +14,8 @@ import {HeaderLink} from '../interfaces/header-link';
 import {HeaderLinkItem} from '../interfaces/header-link-item';
 import {HttpUtilsService} from './http-utils.service';
 
+const arrify = x => Array.isArray(x) ? x : [x];
+
 @Injectable()
 export class PostsService {
   private url = `${environment.apiUrl}/posts`;
@@ -24,16 +26,18 @@ export class PostsService {
   ) {
   }
 
-  getPostsByHeaderLink(params: HeaderLinkItem): Observable<Posts> {
+  getPostsByHeaderLink(params: HeaderLinkItem, explicitId = -1): Observable<Posts> {
+    const url = this.url + (explicitId >= 0 ? `/${explicitId}` : '');
     const httpParams = this.httpUtilsService.headerLinkItemToHttpParams(params);
+
     return this.httpClient
-      .get<any>(this.url, {
+      .get<any>(url, {
         params: httpParams,
         observe: 'response'
       }).map(response => {
         const header = new ResponseHeader(response.headers);
         const pagination = header.link;
-        const items: Post[] = response.body;
+        const items: Post[] = arrify(response.body);
         return {
           pagination,
           items
@@ -49,6 +53,13 @@ export class PostsService {
       _include: 'tags',
       _expand: ['user', 'category']
     } as HeaderLinkItem);
+  }
+
+  getPost(id: number): Observable<Posts> {
+    return this.getPostsByHeaderLink({
+      _include: 'tags',
+      _expand: ['user', 'category']
+    } as HeaderLinkItem, id);
   }
 
   getArchiveYears(): Observable<ArchiveYears> {

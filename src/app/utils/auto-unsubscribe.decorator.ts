@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs/Subscription';
 
 export default function autoUnsubscribe(constructor: Function): void {
   const original: Function = constructor.prototype.ngOnDestroy;
-  const originalExists = typeof original !== 'function';
+  const originalExists = typeof original === 'function';
 
   // the aot build would not call ngOnDestroy if it's not visible for the builder itself
   if (originalExists) {

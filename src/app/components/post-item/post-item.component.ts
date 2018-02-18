@@ -19,6 +19,9 @@ export class PostItemComponent implements OnInit {
 
   ngOnInit() {
     let text = this.item.body;
+    if (this.standalone) {
+      text = text.replace(/\[more]/g, '');
+    }
     if (text.includes('[more]')) {
       this.truncated = true;
       text = text.split('[more]')[0];
