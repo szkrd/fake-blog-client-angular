@@ -1,2 +1,36 @@
 @import "common";
 @import "widgets";
+
+form {
+  display: flex;
+}
+
+input[type=search] {
+  flex: 1;
+  margin-right: 10px;
+  display: inline-block;
+  border: 2px solid var(--shadow-green);
+  border-radius: 2px;
+  padding: 3px 5px;
+  font-size: 12px;
+  line-height: 14px;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  flex: 0;
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: var(--shadow-green);
+  border: 0;
+  color: var(--dark-gray);
+  line-height: 23px;
+  border-radius: 2px;
+  padding: 0 10px;
+
+  &:hover {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
+  }
+}

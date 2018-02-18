@@ -1,33 +1,43 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
 
+@autoUnsubscribe
 @Component({
   selector: 'app-search-posts',
   templateUrl: './search-posts.component.html',
   styleUrls: ['./search-posts.component.scss']
 })
-export class SearchPostsComponent implements OnChanges {
-  @Input('query') defaultQuery = '';
+export class SearchPostsComponent implements OnInit, OnDestroy {
+  // input: from route query param
+  // output: rerouting
 
+  routeChangeSubscription: Subscription;
   form: FormGroup;
   query: FormControl;
 
-  constructor (private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.createForm();
   }
 
-  // parent -> child
-  // (the route may do a soft change, so ngOnInit is not enough)
-  ngOnChanges (changes) {
-    if (changes.defaultQuery) {
-      this.query.setValue(this.defaultQuery);
-    }
+  ngOnInit() {
+    this.routeChangeSubscription = this.route
+      .queryParams
+      .subscribe((params) => {
+        this.query.setValue((params['q'] || '').trim().substr(0, 64));
+      });
   }
 
-  createForm () {
+  ngOnDestroy() {}
+
+  createForm() {
     this.query = new FormControl('', [
       Validators.required,
-      Validators.minLength(2),
+      Validators.minLength(1),
       Validators.maxLength(64)
     ]);
     this.form = this.formBuilder.group({
@@ -35,10 +45,9 @@ export class SearchPostsComponent implements OnChanges {
     });
   }
 
-  // child -> parent
-  submit () {
-    // this.queryEmitter.emit(this.query.value);
-    console.log('TODO');
+  submit() {
+    const queryParams = {q: this.query.value};
+    this.router.navigate(['posts'], {queryParams});
   }
 
 }

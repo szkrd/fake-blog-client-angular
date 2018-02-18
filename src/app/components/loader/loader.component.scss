@@ -1,0 +1,49 @@
+// modifiers:
+// - `.pull-right`
+// - `.small`
+// - `.global`
+
+:host.pull-right {
+  .spinner {
+    top: 10px;
+    right: 10px;
+    left: auto;
+  }
+}
+
+:host.small {
+  .spinner {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+:host.global {
+  .container {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.2);
+    text-align: center;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  width: 49px;
+  height: 49px;
+  border: 3px solid var(--persimmon);
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: cssload-spin 575ms infinite linear;
+}
+
+@keyframes cssload-spin {
+  100%{ transform: rotate(360deg); }
+}

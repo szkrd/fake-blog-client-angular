@@ -41,8 +41,9 @@ export class PostsService {
       });
   }
 
-  getPosts(page = 1): Observable<Posts> {
+  getPosts(page = 1, text = ''): Observable<Posts> {
     return this.getPostsByHeaderLink({
+      q: text,
       _limit: 10,
       _page: page,
       _include: 'tags',

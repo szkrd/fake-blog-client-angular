@@ -7,6 +7,7 @@ import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
 import {HeaderLinkItem} from '../../interfaces/header-link-item';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {EventBusService} from '../../services/event-bus.service';
 
 @autoUnsubscribe
 @Component({
@@ -18,6 +19,8 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   currentRouteBase = 'posts';
   routeChangeSubscription: Subscription;
   routeUrlSubscription: Subscription;
+  searchForPostsSubscription: Subscription;
+  isLoading = true;
   pagination: HeaderLink;
   queryString = '';
   currentPage = 1;
@@ -25,10 +28,17 @@ export class PostsPageComponent implements OnInit, OnDestroy {
 
   constructor(private postsService: PostsService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private eventBus: EventBusService) {
   }
 
   ngOnInit() {
+    this.searchForPostsSubscription = this.eventBus
+      .searchForPosts
+      .subscribe(payload => {
+        this.queryString = payload.query;
+      });
+
     this.routeChangeSubscription = this.route
       .queryParams
       .subscribe(this.onRouteQueryParamChange);
@@ -46,8 +56,9 @@ export class PostsPageComponent implements OnInit, OnDestroy {
     const page = Number(params['page']) || 1;
     this.queryString = text;
     this.currentPage = page;
+    this.isLoading = true;
     this.postsService
-      .getPosts(page)
+      .getPosts(page, text)
       .subscribe(this.onPostsSuccess);
   }
 
@@ -58,13 +69,18 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   onPostsSuccess(results) {
     this.items = results.items;
     this.pagination = results.pagination;
+    this.isLoading = false;
   }
 
   onPagination(payload: HeaderLinkItem) {
-    const queryParams = {page: null};
+    const queryParams = {page: null, q: ''};
     const page = parseInt(String(payload._page), 10) || 1;
+    const q = String(payload.q);
     if (page > 1) {
       queryParams.page = page;
+    }
+    if (q) {
+      queryParams.q = q;
     }
     this.router.navigate([this.currentRouteBase], {queryParams});
 

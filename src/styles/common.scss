@@ -14,3 +14,9 @@ a {
 .hidden {
   display: none;
 }
+
+.translucent {
+  opacity: .5;
+  filter: blur(1px);
+  pointer-events: none;
+}

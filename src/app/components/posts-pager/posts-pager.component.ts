@@ -9,6 +9,7 @@ import {HeaderLinkItem} from '../../interfaces/header-link-item';
 })
 export class PostsPagerComponent {
   @Input('header-link') headerLink: HeaderLink;
+  @Input('detailed') detailed = false;
 
   @Output('link-select') headerLinkSelectEmitter = new EventEmitter<HeaderLinkItem>();
 

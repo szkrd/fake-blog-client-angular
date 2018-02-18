@@ -23,10 +23,13 @@ import {TagsService} from './services/tags.service';
 import {CategoriesWidgetComponent} from './components/categories-widget/categories-widget.component';
 import {CategoriesService} from './services/categories.service';
 import {HttpUtilsService} from './services/http-utils.service';
+import {EventBusService} from './services/event-bus.service';
+import {LoaderComponent} from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoaderComponent,
     PostsPageComponent,
     PostPageComponent,
     ProfilePageComponent,
@@ -50,6 +53,7 @@ import {HttpUtilsService} from './services/http-utils.service';
     routing
   ],
   providers: [
+    EventBusService,
     HttpUtilsService,
     PostsService,
     TagsService,

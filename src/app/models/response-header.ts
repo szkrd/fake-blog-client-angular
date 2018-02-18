@@ -12,6 +12,7 @@ export class ResponseHeader {
     headers: HttpHeaders,
     parseHeaderLink: ParseLinkHeader = parseLinkHeaderLib
   ) {
-    this.link = parseLinkHeaderLib(headers.get('link'));
+    this.link = parseLinkHeaderLib(headers.get('link')) || {};
+    this.link.totalCount = parseInt(headers.get('x-total-count'), 10) || 0;
   }
 }
