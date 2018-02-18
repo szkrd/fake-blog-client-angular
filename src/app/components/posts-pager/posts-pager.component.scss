@@ -1,0 +1,49 @@
+@import "variables";
+
+$h: 40px;
+
+ul {
+  margin: 0 5px;
+  padding: 0;
+  height: $h;
+  list-style: none;
+}
+
+li {
+  &.newer {
+    float: left;
+
+    a:hover .arrow {
+      left: -3px;
+    }
+  }
+
+  &.older {
+    float: right;
+
+    a:hover .arrow {
+      left: 3px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0 $h / 2;
+    display: block;
+    line-height: $h;
+    height: $h;
+    background-color: rgba($color4, .2); // #{'rgba(var(--dark-gray-rgb), 0.1)'};
+    color: var(--dark-gray);
+    border-radius: 3px;
+    transition: background-color .2s ease-in-out;
+
+    .arrow {
+      position: relative;
+      transition: left .3s ease-in-out;
+    }
+
+    &:hover {
+      background-color: rgba($color4, .5);
+    }
+  }
+}

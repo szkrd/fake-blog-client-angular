@@ -1,5 +1,10 @@
 <div class="main-layout">
   <div class="main-layout__content">
+    <app-posts-pager
+      *ngIf="pagination"
+      [header-link]="pagination"
+      (link-select)="onPagination($event)"
+    ></app-posts-pager>
     <app-post-item [item]="item" *ngFor="let item of items"></app-post-item>
   </div>
   <app-sidebar></app-sidebar>

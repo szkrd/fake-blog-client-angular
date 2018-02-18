@@ -10,27 +10,25 @@ import {Post} from '../interfaces/post';
 import {ArchiveYears} from '../models/archive-years';
 import {ArchiveMonth} from '../interfaces/archive-month';
 import {ArchiveTitle} from '../interfaces/archive-title';
+import {HeaderLink} from '../interfaces/header-link';
+import {HeaderLinkItem} from '../interfaces/header-link-item';
+import {HttpUtilsService} from './http-utils.service';
 
 @Injectable()
 export class PostsService {
   private url = `${environment.apiUrl}/posts`;
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private httpUtilsService: HttpUtilsService
+  ) {
   }
 
-  getPosts(page = 1): Observable<Posts> {
-    let params = new HttpParams()
-      .set('_limit', '10')
-      .set('_page', String(page))
-      .set('_include', 'tags');
-
-    // this would not work in the set chain above!
-    params = params.append('_expand', 'category');
-    params = params.append('_expand', 'user');
-
+  getPostsByHeaderLink(params: HeaderLinkItem): Observable<Posts> {
+    const httpParams = this.httpUtilsService.headerLinkItemToHttpParams(params);
     return this.httpClient
       .get<any>(this.url, {
-        params, //  listing here with inline set will choke on same named items, like _expand
+        params: httpParams,
         observe: 'response'
       }).map(response => {
         const header = new ResponseHeader(response.headers);
@@ -41,6 +39,15 @@ export class PostsService {
           items
         };
       });
+  }
+
+  getPosts(page = 1): Observable<Posts> {
+    return this.getPostsByHeaderLink({
+      _limit: 10,
+      _page: page,
+      _include: 'tags',
+      _expand: ['user', 'category']
+    } as HeaderLinkItem);
   }
 
   getArchiveYears(): Observable<ArchiveYears> {

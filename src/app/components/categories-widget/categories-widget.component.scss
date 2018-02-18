@@ -1,0 +1,10 @@
+@import "common";
+@import "widgets";
+
+ul li {
+  color: var(--shadow-green);
+
+  &::before {
+    content: '▪';
+  }
+}

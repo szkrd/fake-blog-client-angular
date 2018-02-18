@@ -1,0 +1,14 @@
+<ul>
+  <li class="newer" *ngIf="headerLink.prev">
+    <a class="page-link page-prev" href="#prev" (click)="onClick(headerLink.prev); false">
+      <span class="arrow">&laquo;</span>
+      newer
+    </a>
+  </li>
+  <li class="older" *ngIf="headerLink.next">
+    <a class="page-link page-next" href="#next" (click)="onClick(headerLink.next); false">
+      older
+      <span class="arrow">&raquo;</span>
+    </a>
+  </li>
+</ul>
