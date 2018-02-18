@@ -20,7 +20,7 @@ import {MonthNamePipe} from './pipes/month-name.pipe';
 import {Marked} from './interfaces/marked';
 import {TagCloudWidgetComponent} from './components/tag-cloud-widget/tag-cloud-widget.component';
 import {TagsService} from './services/tags.service';
-import { CategoriesWidgetComponent } from './components/categories-widget/categories-widget.component';
+import {CategoriesWidgetComponent} from './components/categories-widget/categories-widget.component';
 import {CategoriesService} from './services/categories.service';
 import {HttpUtilsService} from './services/http-utils.service';
 
@@ -40,7 +40,7 @@ import {HttpUtilsService} from './services/http-utils.service';
     ArchiveWidgetComponent,
     MonthNamePipe,
     TagCloudWidgetComponent,
-    CategoriesWidgetComponent,
+    CategoriesWidgetComponent
   ],
   imports: [
     BrowserModule,
