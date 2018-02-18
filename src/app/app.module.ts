@@ -26,7 +26,8 @@ import {HttpUtilsService} from './services/http-utils.service';
 import {EventBusService} from './services/event-bus.service';
 import {LoaderComponent} from './components/loader/loader.component';
 import {DomUtilsService} from './services/dom-utils.service';
-import { ViewComponent } from './components/view/view.component';
+import {ViewComponent} from './components/view/view.component';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ViewComponent } from './components/view/view.component';
     MonthNamePipe,
     TagCloudWidgetComponent,
     CategoriesWidgetComponent,
-    ViewComponent
+    ViewComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -26,9 +26,9 @@ export class SearchPostsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeChangeSubscription = this.route
-      .queryParams
+      .queryParamMap
       .subscribe((params) => {
-        this.query.setValue((params['q'] || '').trim().substr(0, 64));
+        this.query.setValue((params.get('q') || '').trim().substr(0, 64));
       });
   }
 

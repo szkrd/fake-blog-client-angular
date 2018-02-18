@@ -40,7 +40,7 @@ export class PostsPageComponent implements OnInit, OnDestroy {
       });
 
     this.routeChangeSubscription = this.route
-      .queryParams
+      .queryParamMap
       .subscribe(this.onRouteQueryParamChange);
 
     this.routeUrlSubscription = this.route
@@ -52,8 +52,8 @@ export class PostsPageComponent implements OnInit, OnDestroy {
 
   @bind
   onRouteQueryParamChange(params) {
-    const text = (params['q'] || '').trim();
-    const page = Number(params['page']) || 1;
+    const text = (params.get('q') || '').trim();
+    const page = Number(params.get('page')) || 1;
     this.queryString = text;
     this.currentPage = page;
     this.isLoading = true;

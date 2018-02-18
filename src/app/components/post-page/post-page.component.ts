@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
 import {Subscription} from 'rxjs/Subscription';
@@ -12,7 +12,7 @@ import {DomUtilsService} from '../../services/dom-utils.service';
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.scss']
 })
-export class PostPageComponent implements OnInit {
+export class PostPageComponent implements OnInit, OnDestroy {
   item: Post;
   isLoading = true;
   routeChangeSubscription: Subscription;
@@ -24,10 +24,13 @@ export class PostPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.routeChangeSubscription = this.activatedRoute.params.subscribe(params => {
-      this.id = Number(params.id);
+    this.routeChangeSubscription = this.activatedRoute.paramMap.subscribe(params => {
+      this.id = Number(params.get('id'));
       this.getPost();
     });
+  }
+
+  ngOnDestroy() {
   }
 
   getPost() {

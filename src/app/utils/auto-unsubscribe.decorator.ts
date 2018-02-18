@@ -6,7 +6,7 @@ export default function autoUnsubscribe(constructor: Function): void {
   const originalExists = typeof original === 'function';
 
   // the aot build would not call ngOnDestroy if it's not visible for the builder itself
-  if (originalExists) {
+  if (!originalExists) {
     console.warn(`${constructor.name} is using @AutoUnsubscribe but does not implement OnDestroy`);
   }
 
