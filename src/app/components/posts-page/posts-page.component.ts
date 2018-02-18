@@ -73,16 +73,18 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   }
 
   onPagination(payload: HeaderLinkItem) {
-    const queryParams = {page: null, q: ''};
-    const page = parseInt(String(payload._page), 10) || 1;
-    const q = String(payload.q);
-    if (page > 1) {
-      queryParams.page = page;
+    const queryParams = {
+      page: parseInt(String(payload._page), 10) || 1,
+      q: payload.q
+    };
+    if (queryParams.page <= 1) {
+      delete queryParams.page;
     }
-    if (q) {
-      queryParams.q = q;
+    if (!queryParams.q) {
+      delete queryParams.q;
     }
-    this.router.navigate([this.currentRouteBase], {queryParams});
+    const route = 'view/' + this.currentRouteBase;
+    this.router.navigate([route], {queryParams});
 
     // without the router it would work like this:
     // this.postsService.getPostsByHeaderLink(payload).subscribe(this.onPostsSuccess);

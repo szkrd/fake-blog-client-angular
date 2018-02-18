@@ -47,7 +47,7 @@ export class SearchPostsComponent implements OnInit, OnDestroy {
 
   submit() {
     const queryParams = {q: this.query.value};
-    this.router.navigate(['posts'], {queryParams});
+    this.router.navigate(['view/posts'], {queryParams});
   }
 
 }

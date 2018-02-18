@@ -46,13 +46,23 @@ export class PostsService {
   }
 
   getPosts(page = 1, text = ''): Observable<Posts> {
-    return this.getPostsByHeaderLink({
+    const params = {
       q: text,
-      _limit: 10,
       _page: page,
+      _limit: 10,
       _include: 'tags',
       _expand: ['user', 'category']
-    } as HeaderLinkItem);
+    };
+
+    if (!text) {
+      delete params.q;
+    }
+
+    if (!page) {
+      delete params._page;
+    }
+
+    return this.getPostsByHeaderLink(params as HeaderLinkItem);
   }
 
   getPost(id: number): Observable<Posts> {

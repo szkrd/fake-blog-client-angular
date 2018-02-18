@@ -26,7 +26,7 @@
           <!--region post titles -->
           <ul *ngIf="currentArchiveTitles.length && openedMonth === archiveMonth.id">
             <li *ngFor="let archiveTitle of currentArchiveTitles" class="post-title">
-              <a [routerLink]="['/post', archiveTitle.id]" [title]="archiveTitle.title">
+              <a [routerLink]="['post', archiveTitle.id]" [title]="archiveTitle.title">
                 {{ archiveTitle.title }}
               </a>
             </li>

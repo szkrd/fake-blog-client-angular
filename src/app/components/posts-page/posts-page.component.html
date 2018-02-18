@@ -1,29 +1,24 @@
-<div class="main-layout">
-  <div class="main-layout__content">
-    <app-loader *ngIf="isLoading" class="pull-right"></app-loader>
-    <div [class.translucent]="isLoading">
-      <p class="top-info" *ngIf="queryString && items && !isLoading">
-        <span *ngIf="pagination && pagination.totalCount > 0">
-          Found <strong>{{pagination.totalCount}}</strong> post(s).
-        </span>
-        <span *ngIf="!pagination?.totalCount">
-          No posts found.
-        </span>
-      </p>
-      <p class="top-info" *ngIf="isLoading">
-        ...
-      </p>
-      <app-post-item
-        [item]="item"
-        *ngFor="let item of items"
-      ></app-post-item>
-      <app-posts-pager
-        *ngIf="pagination"
-        [detailed]="!!queryString"
-        [header-link]="pagination"
-        (link-select)="onPagination($event)"
-      ></app-posts-pager>
-    </div>
-  </div>
-  <app-sidebar></app-sidebar>
+<app-loader *ngIf="isLoading" class="pull-right"></app-loader>
+<div [class.translucent]="isLoading">
+  <p class="top-info" *ngIf="queryString && items && !isLoading">
+    <span *ngIf="pagination && pagination.totalCount > 0">
+      Found <strong>{{pagination.totalCount}}</strong> post(s).
+    </span>
+    <span *ngIf="!pagination?.totalCount">
+      No posts found.
+    </span>
+  </p>
+  <p class="top-info" *ngIf="isLoading">
+    ...
+  </p>
+  <app-post-item
+    [item]="item"
+    *ngFor="let item of items"
+  ></app-post-item>
+  <app-posts-pager
+    *ngIf="pagination"
+    [detailed]="!!queryString"
+    [header-link]="pagination"
+    (link-select)="onPagination($event)"
+  ></app-posts-pager>
 </div>

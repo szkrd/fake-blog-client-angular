@@ -1,6 +1,6 @@
 <div class="post">
   <h2>
-    <a [routerLink]="['/post', item.id]" *ngIf="!standalone">
+    <a [routerLink]="['/view/post', item.id]" *ngIf="!standalone">
       {{ item.title }}
     </a>
     <span *ngIf="standalone">
@@ -13,7 +13,7 @@
       {{ item.user.name }}
     </span>
     in category
-    <a [routerLink]="['/category', item.category.slug]" class="category">
+    <a [routerLink]="['/view/category', item.category.slug]" class="category">
       {{ item.category.name}}
     </a>
   </h3>
@@ -22,7 +22,7 @@
     [appMarkdown]="text"
   ></div>
   <div *ngIf="truncated" class="show-more">
-    <a [routerLink]="['/post', item.id]">show more</a>
+    <a [routerLink]="['/view/post', item.id]">show more</a>
   </div>
   <div class="tags">
     <span *ngFor="let tag of item.tags; let last = last">

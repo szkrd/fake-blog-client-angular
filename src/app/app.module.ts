@@ -26,6 +26,7 @@ import {HttpUtilsService} from './services/http-utils.service';
 import {EventBusService} from './services/event-bus.service';
 import {LoaderComponent} from './components/loader/loader.component';
 import {DomUtilsService} from './services/dom-utils.service';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {DomUtilsService} from './services/dom-utils.service';
     ArchiveWidgetComponent,
     MonthNamePipe,
     TagCloudWidgetComponent,
-    CategoriesWidgetComponent
+    CategoriesWidgetComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
