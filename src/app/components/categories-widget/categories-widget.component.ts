@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Category} from '../../interfaces/category';
 import {CategoriesService} from '../../services/categories.service';
 import bind from '../../utils/bind.decorator';
@@ -12,7 +12,7 @@ import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
   templateUrl: './categories-widget.component.html',
   styleUrls: ['./categories-widget.component.scss']
 })
-export class CategoriesWidgetComponent implements OnInit {
+export class CategoriesWidgetComponent implements OnInit, OnDestroy {
   categoriesSubscription: Subscription;
   isLoading = true;
   isBroken = false;
@@ -27,6 +27,9 @@ export class CategoriesWidgetComponent implements OnInit {
       .getCategories()
       .finally(this.onCategoriesFinally)
       .subscribe(this.onCategoriesSuccess);
+  }
+
+  ngOnDestroy() {
   }
 
   @bind

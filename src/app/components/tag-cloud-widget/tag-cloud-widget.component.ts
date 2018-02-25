@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TagsService} from '../../services/tags.service';
 import {WidgetTag} from '../../interfaces/widget-tag';
 import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
@@ -14,7 +14,7 @@ const sortByTagName = (a: WidgetTag, b: WidgetTag) => a.name.localeCompare(b.nam
   templateUrl: './tag-cloud-widget.component.html',
   styleUrls: ['./tag-cloud-widget.component.scss']
 })
-export class TagCloudWidgetComponent implements OnInit {
+export class TagCloudWidgetComponent implements OnInit, OnDestroy {
   tagsSubscription: Subscription;
   isLoading = true;
   isBroken = false;
@@ -28,6 +28,9 @@ export class TagCloudWidgetComponent implements OnInit {
     this.tagsSubscription = this.tagsService.getTags()
       .finally(this.onCategoriesFinally)
       .subscribe(this.onCategoriesSuccess, this.onCategoriesError);
+  }
+
+  ngOnDestroy() {
   }
 
   @bind
