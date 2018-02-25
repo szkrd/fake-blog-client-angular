@@ -1,6 +1,12 @@
 <h2 class="foo">
   tags
 </h2>
+
+<app-loader
+  class="small inline desaturated"
+  *ngIf="isLoading"
+></app-loader>
+
 <ul *ngIf="items.length">
   <li *ngFor="let item of items" [class.hidden]="!item.posts">
     <a [routerLink]="['/tag', item.slug]" class="tag-link">
@@ -10,6 +16,11 @@
     </span>
   </li>
 </ul>
-<p class="no-tags" *ngIf="!items.length">
-  No tags
+
+<p class="no-tags" *ngIf="!items.length && itemsLoaded">
+  No categories
+</p>
+
+<p class="error" *ngIf="isBroken">
+  Could not load tags.
 </p>

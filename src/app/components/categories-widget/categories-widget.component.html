@@ -1,6 +1,12 @@
 <h2>
   categories
 </h2>
+
+<app-loader
+  class="small inline desaturated"
+  *ngIf="isLoading"
+></app-loader>
+
 <ul *ngIf="items.length">
   <li *ngFor="let item of items">
     <a [routerLink]="['/category', item.slug]" class="category-link">
@@ -8,7 +14,11 @@
     </a>
   </li>
 </ul>
-<p class="no-tags" *ngIf="!items.length">
+
+<p class="no-tags" *ngIf="!items.length && itemsLoaded">
   No categories
 </p>
 
+<p class="error" *ngIf="isBroken">
+  Could not load categories.
+</p>

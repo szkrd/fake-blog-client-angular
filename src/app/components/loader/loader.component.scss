@@ -1,6 +1,9 @@
 // modifiers:
 // - `.pull-right`
+// - `.desaturated`
 // - `.small`
+// - `.tiny`
+// - `.inline`
 // - `.global`
 
 :host.pull-right {
@@ -15,6 +18,30 @@
   .spinner {
     width: 20px;
     height: 20px;
+  }
+}
+
+:host.small {
+  .spinner {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+:host.desaturated {
+  .spinner {
+    filter: grayscale(100%);
+    opacity: .5;
+  }
+}
+
+:host.inline {
+  .container {
+    position: static;
+  }
+
+  .spinner {
+    position: static;
   }
 }
 
