@@ -1,6 +1,12 @@
 <h2>
   blog archive
 </h2>
+
+<app-loader
+  class="small inline desaturated"
+  *ngIf="isItemsLoading"
+></app-loader>
+
 <form>
   <ul>
     <li *ngFor="let archiveYear of items" [class.opened]="openedYears.includes(archiveYear.year)">
@@ -23,8 +29,13 @@
             ({{ archiveMonth.count }})
           </span>
 
+          <app-loader
+            class="tiny inline desaturated"
+            *ngIf="isTitlesLoading === archiveMonth.id"
+          ></app-loader>
+
           <!--region post titles -->
-          <ul *ngIf="currentArchiveTitles.length && openedMonth === archiveMonth.id">
+          <ul *ngIf="currentArchiveTitles.length && openedMonth === archiveMonth.id && !isTitlesLoading">
             <li *ngFor="let archiveTitle of currentArchiveTitles" class="post-title">
               <a [routerLink]="['post', archiveTitle.id]" [title]="archiveTitle.title">
                 {{ archiveTitle.title }}

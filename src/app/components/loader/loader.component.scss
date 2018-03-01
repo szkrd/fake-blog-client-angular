@@ -16,15 +16,15 @@
 
 :host.small {
   .spinner {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
   }
 }
 
-:host.small {
+:host.tiny {
   .spinner {
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
   }
 }
 
@@ -37,10 +37,12 @@
 
 :host.inline {
   .container {
+    display: inline-block;
     position: static;
   }
 
   .spinner {
+    display: inline-block;
     position: static;
   }
 }
