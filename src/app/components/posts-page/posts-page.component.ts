@@ -17,7 +17,9 @@ import {EventBusService} from '../../services/event-bus.service';
 })
 export class PostsPageComponent implements OnInit, OnDestroy {
   currentRouteBase = 'posts';
-  routeChangeSubscription: Subscription;
+  tagSlug = '';
+  routeChangeQueryParamSubscription: Subscription;
+  routeChangeParamSubscription: Subscription;
   routeUrlSubscription: Subscription;
   searchForPostsSubscription: Subscription;
   isLoading = true;
@@ -27,7 +29,7 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   items: Post[];
 
   constructor(private postsService: PostsService,
-              private route: ActivatedRoute,
+              private activatedRoute: ActivatedRoute,
               private router: Router,
               private eventBus: EventBusService) {
   }
@@ -39,14 +41,26 @@ export class PostsPageComponent implements OnInit, OnDestroy {
         this.queryString = payload.query;
       });
 
-    this.routeChangeSubscription = this.route
+    // query param
+    this.routeChangeQueryParamSubscription = this.activatedRoute
       .queryParamMap
       .subscribe(this.onRouteQueryParamChange);
 
-    this.routeUrlSubscription = this.route
+    // url
+    this.routeUrlSubscription = this.activatedRoute
       .url
       .subscribe((segments) => {
         this.currentRouteBase = segments[0].path;
+      });
+
+    // param
+    this.routeChangeParamSubscription = this.activatedRoute
+      .paramMap
+      .subscribe(params => {
+        this.tagSlug = params.get('tagSlug') || '';
+        this.queryString = '';
+        this.currentPage = 1;
+        this.getPosts();
       });
   }
 
@@ -56,9 +70,13 @@ export class PostsPageComponent implements OnInit, OnDestroy {
     const page = Number(params.get('page')) || 1;
     this.queryString = text;
     this.currentPage = page;
+    this.getPosts();
+  }
+
+  getPosts() {
     this.isLoading = true;
     this.postsService
-      .getPosts(page, text)
+      .getPosts(this.currentPage, this.queryString, this.tagSlug)
       .subscribe(this.onPostsSuccess);
   }
 

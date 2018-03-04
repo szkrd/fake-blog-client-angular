@@ -7,4 +7,5 @@ export interface HeaderLinkItem {
   url?: string;
   rel?: string;
   q?: string;
+  'tags@slug_includes'?: string;
 }

@@ -9,7 +9,7 @@
 
 <ul *ngIf="items.length">
   <li *ngFor="let item of items" [class.hidden]="!item.posts">
-    <a [routerLink]="['/tag', item.slug]" class="tag-link">
+    <a [routerLink]="['/view/tag', item.slug]" class="tag-link">
       {{ item.name }}
     </a><span class="posts-count">
       ({{ item.posts }})

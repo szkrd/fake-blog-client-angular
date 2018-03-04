@@ -45,7 +45,7 @@ export class PostsService {
       });
   }
 
-  getPosts(page = 1, text = ''): Observable<Posts> {
+  getPosts(page = 1, text = '', tagSlug? = ''): Observable<Posts> {
     const params = {
       q: text,
       _page: page,
@@ -60,6 +60,10 @@ export class PostsService {
 
     if (!page) {
       delete params._page;
+    }
+
+    if (tagSlug) {
+      params['tags@slug_includes'] = tagSlug;
     }
 
     return this.getPostsByHeaderLink(params as HeaderLinkItem);

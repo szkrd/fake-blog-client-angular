@@ -12,6 +12,7 @@ const routes: Routes = [
     component: ViewComponent,
     children: [
       {path: 'posts', component: PostsPageComponent},
+      {path: 'tag/:tagSlug', component: PostsPageComponent},
       {path: 'post/:id', component: PostPageComponent},
       {path: 'profile', component: ProfilePageComponent}
     ]
