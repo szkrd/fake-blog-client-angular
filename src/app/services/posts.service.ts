@@ -45,7 +45,7 @@ export class PostsService {
       });
   }
 
-  getPosts(page = 1, text = '', tagSlug? = ''): Observable<Posts> {
+  getPosts(page = 1, text = '', tagSlug = ''): Observable<Posts> {
     const params = {
       q: text,
       _page: page,
