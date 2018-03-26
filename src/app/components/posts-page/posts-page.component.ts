@@ -8,6 +8,7 @@ import {HeaderLinkItem} from '../../interfaces/header-link-item';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {EventBusService} from '../../services/event-bus.service';
+import {combineLatest} from 'rxjs/observable/combineLatest';
 
 @autoUnsubscribe
 @Component({
@@ -41,35 +42,29 @@ export class PostsPageComponent implements OnInit, OnDestroy {
         this.queryString = payload.query;
       });
 
-    // query param
-    this.routeChangeQueryParamSubscription = this.activatedRoute
-      .queryParamMap
-      .subscribe(this.onRouteQueryParamChange);
-
-    // url
+    // main url (/foo)
     this.routeUrlSubscription = this.activatedRoute
       .url
       .subscribe((segments) => {
         this.currentRouteBase = segments[0].path;
       });
 
-    // param
-    this.routeChangeParamSubscription = this.activatedRoute
-      .paramMap
-      .subscribe(params => {
-        this.tagSlug = params.get('tagSlug') || '';
-        this.queryString = '';
-        this.currentPage = 1;
-        this.getPosts();
-      });
+    // both route param and query param
+    combineLatest(
+      this.activatedRoute.queryParamMap,
+      this.activatedRoute.paramMap
+    ).subscribe(this.onRouteAnyParamChange);
   }
 
   @bind
-  onRouteQueryParamChange(params) {
-    const text = (params.get('q') || '').trim();
-    const page = Number(params.get('page')) || 1;
-    this.queryString = text;
-    this.currentPage = page;
+  onRouteAnyParamChange(paramMaps) {
+    const qpMap = paramMaps[0]; // ?foo=1 -> pagination, search text
+    const pMap = paramMaps[1]; // /bar/:id/ -> subpage, like tags or categories
+
+    this.queryString = (qpMap.get('q') || '').trim(); // ?q=NEEDLE
+    this.currentPage = Number(qpMap.get('page')) || 1; // ?page=42
+    this.tagSlug = pMap.get('tagSlug') || ''; // /tag/FOO
+
     this.getPosts();
   }
 
