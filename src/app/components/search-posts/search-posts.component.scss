@@ -1,5 +1,6 @@
 @import "common";
 @import "widgets";
+@import "variables";
 
 form {
   display: flex;
@@ -9,7 +10,7 @@ input[type=search] {
   flex: 1;
   margin-right: 10px;
   display: inline-block;
-  border: 2px solid var(--shadow-green);
+  border: 2px solid $color-shadow-green;
   border-radius: 2px;
   padding: 3px 5px;
   font-size: 12px;
@@ -23,9 +24,9 @@ button {
   font-size: 12px;
   display: inline-block;
   vertical-align: top;
-  background-color: var(--shadow-green);
+  background-color: $color-shadow-green;
   border: 0;
-  color: var(--dark-gray);
+  color: $color-dark-gray;
   line-height: 23px;
   border-radius: 2px;
   padding: 0 10px;

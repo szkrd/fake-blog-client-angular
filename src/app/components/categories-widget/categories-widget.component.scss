@@ -1,9 +1,8 @@
 @import "common";
 @import "widgets";
+@import "variables";
 
 ul li {
-  color: var(--shadow-green);
-
   &::before {
     content: '▪';
   }

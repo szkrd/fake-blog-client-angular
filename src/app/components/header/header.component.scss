@@ -1,7 +1,9 @@
+@import "variables";
+
 :host {
   display: block;
   padding: 5px;
-  background-color: var(--shadow-green);
+  background-color: $color4;
   box-shadow: inset 0 5px 25px rgba(0, 0, 0, .1);
 }
 

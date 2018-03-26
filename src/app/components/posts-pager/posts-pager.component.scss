@@ -32,8 +32,8 @@ li {
     display: block;
     line-height: $h;
     height: $h;
-    background-color: rgba($color4, .2); // #{'rgba(var(--dark-gray-rgb), 0.1)'};
-    color: var(--dark-gray);
+    background-color: rgba($color-dark-gray, .2); // #{'rgba(var(--dark-gray-rgb), 0.1)'};
+    color: $color-dark-gray;
     border-radius: 3px;
     transition: background-color .2s ease-in-out;
 
@@ -43,7 +43,7 @@ li {
     }
 
     &:hover {
-      background-color: rgba($color4, .5);
+      background-color: rgba($color-shadow-green, .5);
     }
   }
 }

@@ -1,3 +1,5 @@
+@import "variables";
+
 // modifiers:
 // - `.pull-right`
 // - `.desaturated`
@@ -66,7 +68,7 @@
   left: calc(50% - 25px);
   width: 49px;
   height: 49px;
-  border: 3px solid var(--persimmon);
+  border: 3px solid $color-persimmon;
   border-radius: 50%;
   border-left-color: transparent;
   border-right-color: transparent;
