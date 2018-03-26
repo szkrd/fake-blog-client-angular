@@ -4,12 +4,9 @@ Backend: [fake blog api](https://github.com/szkrd/fake-blog-api) (apiUrl is 'htt
 
 ## Random TODOs
 
-- [ ] slow responses and loaders
 - [ ] error handling
-- [ ] search
-- [ ] pager
+- [ ] search (broken response?)
 - [ ] category page
-- [ ] tag page
 - [ ] profile menu in link
 - [ ] profile page
 - [ ] tests

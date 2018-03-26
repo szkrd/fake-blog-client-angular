@@ -13,6 +13,7 @@ const routes: Routes = [
     children: [
       {path: 'posts', component: PostsPageComponent},
       {path: 'tag/:tagSlug', component: PostsPageComponent},
+      {path: 'category/:categorySlug', component: PostsPageComponent},
       {path: 'post/:id', component: PostPageComponent},
       {path: 'profile', component: ProfilePageComponent}
     ]

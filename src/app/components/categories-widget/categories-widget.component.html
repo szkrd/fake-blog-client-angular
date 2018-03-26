@@ -9,7 +9,7 @@
 
 <ul *ngIf="items.length">
   <li *ngFor="let item of items">
-    <a [routerLink]="['/category', item.slug]" class="category-link">
+    <a [routerLink]="['/view/category', item.slug]" class="category-link">
       {{ item.name }}
     </a>
   </li>

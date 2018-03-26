@@ -19,6 +19,7 @@ import {combineLatest} from 'rxjs/observable/combineLatest';
 export class PostsPageComponent implements OnInit, OnDestroy {
   currentRouteBase = 'posts';
   tagSlug = '';
+  categorySlug = '';
   routeChangeQueryParamSubscription: Subscription;
   routeChangeParamSubscription: Subscription;
   routeUrlSubscription: Subscription;
@@ -64,6 +65,7 @@ export class PostsPageComponent implements OnInit, OnDestroy {
     this.queryString = (qpMap.get('q') || '').trim(); // ?q=NEEDLE
     this.currentPage = Number(qpMap.get('page')) || 1; // ?page=42
     this.tagSlug = pMap.get('tagSlug') || ''; // /tag/FOO
+    this.categorySlug = pMap.get('categorySlug') || ''; // /category/FOO
 
     this.getPosts();
   }
@@ -71,7 +73,7 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   getPosts() {
     this.isLoading = true;
     this.postsService
-      .getPosts(this.currentPage, this.queryString, this.tagSlug)
+      .getPosts(this.currentPage, this.queryString, this.tagSlug, this.categorySlug)
       .subscribe(this.onPostsSuccess);
   }
 
