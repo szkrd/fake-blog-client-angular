@@ -92,9 +92,10 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   }
 
   onPagination(payload: HeaderLinkItem) {
+    const sub = payload['tags@slug_includes']; // same as this.tagSlug
     const queryParams = {
       page: parseInt(String(payload._page), 10) || 1,
-      q: payload.q
+      q: payload.q // for search mode
     };
     if (queryParams.page <= 1) {
       delete queryParams.page;
@@ -102,10 +103,7 @@ export class PostsPageComponent implements OnInit, OnDestroy {
     if (!queryParams.q) {
       delete queryParams.q;
     }
-    const route = 'view/' + this.currentRouteBase;
+    const route = 'view/' + this.currentRouteBase + (sub ? `/${sub}` : '');
     this.router.navigate([route], {queryParams});
-
-    // without the router it would work like this:
-    // this.postsService.getPostsByHeaderLink(payload).subscribe(this.onPostsSuccess);
   }
 }
