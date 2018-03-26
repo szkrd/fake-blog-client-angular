@@ -8,7 +8,6 @@ Backend: [fake blog api](https://github.com/szkrd/fake-blog-api) (apiUrl is 'htt
 - [ ] error handling
 - [ ] search
 - [ ] pager
-- [ ] tag cloud
 - [ ] category page
 - [ ] tag page
 - [ ] profile menu in link

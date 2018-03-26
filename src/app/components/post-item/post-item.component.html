@@ -26,7 +26,7 @@
   </div>
   <div class="tags">
     <span *ngFor="let tag of item.tags; let last = last">
-      <a href="#TODO">{{ tag.name }}</a>{{ last ? '' : ','}}
+      <a [routerLink]="['/view/tag', tag.slug]" class="tag-link">{{ tag.name }}</a>{{ last ? '' : ','}}
     </span>
   </div>
 </div>

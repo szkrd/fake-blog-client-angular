@@ -31,6 +31,7 @@ export class TagCloudWidgetComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // do not remove
   }
 
   @bind

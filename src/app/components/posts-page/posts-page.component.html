@@ -1,5 +1,9 @@
 <app-loader *ngIf="isLoading" class="pull-right"></app-loader>
 <div [class.translucent]="isLoading">
+  <app-posts-page-current-tag-info
+    *ngIf="tagSlug"
+    [name]="tagSlug"
+  ></app-posts-page-current-tag-info>
   <p class="top-info" *ngIf="queryString && items && !isLoading">
     <span *ngIf="pagination && pagination.totalCount > 0">
       Found <strong>{{pagination.totalCount}}</strong> post(s).

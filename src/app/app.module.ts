@@ -28,6 +28,7 @@ import {LoaderComponent} from './components/loader/loader.component';
 import {DomUtilsService} from './services/dom-utils.service';
 import {ViewComponent} from './components/view/view.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import { PostsPageCurrentTagInfoComponent } from './components/posts-page-current-tag-info/posts-page-current-tag-info.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     TagCloudWidgetComponent,
     CategoriesWidgetComponent,
     ViewComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PostsPageCurrentTagInfoComponent
   ],
   imports: [
     BrowserModule,
