@@ -89,7 +89,10 @@ export class PostsPageComponent implements OnInit, OnDestroy {
   }
 
   onPagination(payload: HeaderLinkItem) {
-    const sub = payload['tags@slug_includes']; // same as this.tagSlug
+    const tagSlug = payload['tags@slug_includes']; // same as this.tagSlug
+    const categorySlug = payload['category@slug_includes']; // same as this.categorySlug
+    const sub = tagSlug || categorySlug;
+
     const queryParams = {
       page: parseInt(String(payload._page), 10) || 1,
       q: payload.q // for search mode

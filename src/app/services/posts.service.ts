@@ -67,7 +67,7 @@ export class PostsService {
     }
 
     if (categorySlug) {
-      params['categories@slug_includes'] = categorySlug;
+      params['category@slug_includes'] = categorySlug;
     }
 
     return this.getPostsByHeaderLink(params as HeaderLinkItem);
