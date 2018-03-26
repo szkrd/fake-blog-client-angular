@@ -4,6 +4,8 @@ Backend: [fake blog api](https://github.com/szkrd/fake-blog-api) (apiUrl is 'htt
 
 ## Random TODOs
 
+- [ ] highlight current tag and category
+- [ ] display category as a subtitle?
 - [ ] error handling
 - [ ] search (broken response?)
 - [ ] category page
