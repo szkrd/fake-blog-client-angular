@@ -18,6 +18,11 @@ const arrify = x => Array.isArray(x) ? x : [x];
 
 @Injectable()
 export class PostsService {
+  // try to store current category or tag in a heuristic manner
+  // so that the ui can highlight the category menu item or a tag in the tag cloud
+  currentCategorySlug = '';
+  currentTagSlug = '';
+
   private url = `${environment.apiUrl}/posts`;
 
   constructor(
@@ -38,6 +43,9 @@ export class PostsService {
         const header = new ResponseHeader(response.headers);
         const pagination = header.link;
         const items: Post[] = arrify(response.body);
+        if (explicitId > -1 && items[0]) {
+          this.currentCategorySlug = items[0].category.slug;
+        }
         return {
           pagination,
           items
@@ -63,17 +71,22 @@ export class PostsService {
     }
 
     if (tagSlug) {
-      params['tags@slug_includes'] = tagSlug;
+      this.currentTagSlug = params['tags@slug_includes'] = tagSlug;
+    } else {
+      this.currentTagSlug = '';
     }
 
     if (categorySlug) {
-      params['category@slug_includes'] = categorySlug;
+      this.currentCategorySlug = params['category@slug_includes'] = categorySlug;
+    } else {
+      this.currentCategorySlug = '';
     }
 
     return this.getPostsByHeaderLink(params as HeaderLinkItem);
   }
 
   getPost(id: number): Observable<Posts> {
+    this.currentTagSlug = '';
     return this.getPostsByHeaderLink({
       _include: 'tags',
       _expand: ['user', 'category']

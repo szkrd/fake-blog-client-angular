@@ -8,7 +8,10 @@
 ></app-loader>
 
 <ul *ngIf="items.length">
-  <li *ngFor="let item of items">
+  <li
+    *ngFor="let item of items"
+    [class.active]="postsService.currentCategorySlug === item.slug"
+  >
     <a [routerLink]="['/view/category', item.slug]" class="category-link">
       {{ item.name }}
     </a>

@@ -3,7 +3,22 @@
 @import "variables";
 
 ul li {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &::before {
     content: '▪';
+  }
+
+  &.active {
+    color: $color-persimmon;
+
+    a {
+      text-decoration: underline;
+    }
   }
 }

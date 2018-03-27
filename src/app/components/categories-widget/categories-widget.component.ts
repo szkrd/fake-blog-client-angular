@@ -5,6 +5,7 @@ import bind from '../../utils/bind.decorator';
 import 'rxjs/add/operator/finally';
 import {Subscription} from 'rxjs/Subscription';
 import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
+import {PostsService} from '../../services/posts.service';
 
 @autoUnsubscribe
 @Component({
@@ -19,7 +20,7 @@ export class CategoriesWidgetComponent implements OnInit, OnDestroy {
   itemsLoaded = false;
   items: Category[] = [];
 
-  constructor(private categoriesService: CategoriesService) {
+  constructor(private categoriesService: CategoriesService, public postsService: PostsService) {
   }
 
   ngOnInit() {

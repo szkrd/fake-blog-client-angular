@@ -1,5 +1,6 @@
 @import "common";
 @import "widgets";
+@import "variables";
 
 li, .tag-link, .posts-count {
   display: inline-block;
@@ -7,6 +8,16 @@ li, .tag-link, .posts-count {
 
 li {
   padding: 0 3px 0 0;
+
+  &.active {
+    a {
+      color: $color-persimmon;
+      text-decoration: none;
+    }
+    span {
+      opacity: .5;
+    }
+  }
 }
 
 .posts-count {

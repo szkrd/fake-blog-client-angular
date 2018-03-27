@@ -5,6 +5,7 @@ import autoUnsubscribe from '../../utils/auto-unsubscribe.decorator';
 import {Subscription} from 'rxjs/Subscription';
 import bind from '../../utils/bind.decorator';
 import 'rxjs/add/operator/finally';
+import {PostsService} from '../../services/posts.service';
 
 const sortByTagName = (a: WidgetTag, b: WidgetTag) => a.name.localeCompare(b.name);
 
@@ -21,7 +22,7 @@ export class TagCloudWidgetComponent implements OnInit, OnDestroy {
   itemsLoaded = false;
   items: WidgetTag[] = [];
 
-  constructor(private tagsService: TagsService) {
+  constructor(private tagsService: TagsService, public postsService: PostsService) {
   }
 
   ngOnInit() {
