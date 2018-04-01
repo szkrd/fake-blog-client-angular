@@ -10,6 +10,7 @@
 <ul *ngIf="items.length">
   <li
     *ngFor="let item of items"
+    [class.orphan]="item.posts === 1"
     [class.hidden]="!item.posts"
     [class.active]="postsService.currentTagSlug === item.slug"
   >

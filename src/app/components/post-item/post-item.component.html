@@ -14,8 +14,11 @@
     </span>
     in category
     <a [routerLink]="['/view/category', item.category.slug]" class="category">
-      {{ item.category.name}}
-    </a>
+      {{ item.category.name}}<!--
+    --></a>
+    <span class="created-at">
+      &nbsp;| {{ item.createdAt | date:'fullDate' }}
+    </span>
   </h3>
   <div
     class="body"

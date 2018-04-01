@@ -48,6 +48,7 @@ export class ArchiveWidgetComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // do not remove
   }
 
   // multiple year items may be opened, we store the opened ones' ids in storage

@@ -33,7 +33,9 @@ export class PostsService {
 
   getPostsByHeaderLink(params: HeaderLinkItem, explicitId = -1): Observable<Posts> {
     const url = this.url + (explicitId >= 0 ? `/${explicitId}` : '');
-    const httpParams = this.httpUtilsService.headerLinkItemToHttpParams(params);
+    let httpParams = this.httpUtilsService.headerLinkItemToHttpParams(params);
+    httpParams = httpParams.append('_sort', 'createdAt');
+    httpParams = httpParams.append('_order', 'desc');
 
     return this.httpClient
       .get<any>(url, {
@@ -107,6 +109,8 @@ export class PostsService {
   getTitlesInMonth(minDate: number, maxDate: number): Observable<ArchiveTitle[]> {
     const params = new HttpParams()
       .set('_only', 'title,id')
+      .set('_sort', 'createdAt')
+      .set('_order', 'desc')
       .set('createdAt_gte', String(minDate))
       .set('createdAt_lte', String(maxDate));
 

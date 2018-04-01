@@ -4,14 +4,17 @@ Backend: [fake blog api](https://github.com/szkrd/fake-blog-api) (apiUrl is 'htt
 
 ## Random TODOs
 
-- [ ] highlight current tag and category
-- [ ] display category as a subtitle?
 - [ ] error handling
 - [ ] search (broken response?)
-- [ ] category page
 - [ ] profile menu in link
 - [ ] profile page
 - [ ] tests
+
+## Example
+
+Showing the db of my [Oculus Intertenerius](https://github.com/szkrd/oculus-intertenerius) blog repository:
+
+![Demo](./demo.jpg)
 
 ---
 

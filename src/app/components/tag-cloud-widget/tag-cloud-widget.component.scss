@@ -9,6 +9,10 @@ li, .tag-link, .posts-count {
 li {
   padding: 0 3px 0 0;
 
+  &.orphan {
+    opacity: .4;
+  }
+
   &.active {
     a {
       color: $color-persimmon;

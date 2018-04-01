@@ -42,7 +42,7 @@ export class ArchiveYears extends Array<ArchiveYear> {
 
       Object.keys(monthMap).forEach(month => {
         const current = monthMap[month].slice().sort((a, b) => a - b);
-        months.push({
+        months.unshift({ // use push for normal order, unshift for reverse order
           id: +`${year}${month}`,
           month: +month,
           dates: current,
